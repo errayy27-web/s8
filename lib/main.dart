@@ -563,7 +563,7 @@ class _OrdersPageState extends State<OrdersPage> {
           icon:const Icon(Icons.inventory_2_outlined),label:const Text('Tedarikçinin Ürünlerini Göster')),
       ])),Expanded(child:groups.where((id)=>selectedSupplier==null||id==selectedSupplier).isEmpty?const Center(child:Text('Bu tedarikçiye ait sipariş yok')):ListView(children:[for(final supplier in groups.where((id)=>selectedSupplier==null||id==selectedSupplier))...[
         Padding(padding:const EdgeInsets.fromLTRB(16,18,16,8),child:Text(widget.suppliers[supplier]??'Bilinmeyen tedarikçi',style:Theme.of(context).textTheme.titleLarge)),
-        for(final l in widget.lines.values.where((x)=>x.supplierId==supplier))ListTile(title:Text(l.name),subtitle:Text('Barkod: ${l.barcode}\nKoličina: ${l.quantity} ${l.unit}'),isThreeLine:true,trailing:Wrap(mainAxisSize:MainAxisSize.min,children:[
+        for(final l in widget.lines.values.where((x)=>x.supplierId==supplier))ListTile(title:Text(l.name),subtitle:Text('Barkod: ${l.barcode}\nKoličina: ${l.quantity} ${l.unit}'),isThreeLine:true,trailing:Wrap(children:[
           IconButton(icon:const Icon(Icons.edit_outlined),onPressed:()async{await widget.onEdit(l.code);if(mounted)setState((){});}),
           IconButton(icon:const Icon(Icons.delete_outline),onPressed:()async{await widget.onDelete(l.code);if(mounted)setState((){});}),
         ])),const Divider(),
